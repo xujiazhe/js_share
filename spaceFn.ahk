@@ -28,27 +28,52 @@ return
 CapsLock::Send, {Enter}
 
 CapsLock & a:: Send, !#^+a
+CapsLock & c:: Send, !#^+c
 CapsLock & v:: Send, !#^+v
 CapsLock & g::
     Send, ^c
-    Sleep, 2223
+    Sleep, 223
     Send, !#^+g
 	return
 
 CapsLock & z::ESC
 
-CapsLock & w:: Send, ^{PgUp}
+CapsLock & w:: Send, ^+{Tab}
 CapsLock & r:: Send, ^{PgDn}
 CapsLock & q:: MButton
 
+CapsLock & d::Send, !^+d
+CapsLock & f:: 
+	Send, ^c
+    Sleep, 223
+	Send, !#^+f
+	return
+
 CapsLock & e:: PgUp
 CapsLock & s:: Home
-CapsLock & d:: PgDn
-CapsLock & f:: End
+;CapsLock & d:: PgDn
+;CapsLock & f:: End
+
+
+CapsLock & 1::
+	IfWinNotExist ahk_class CalcFrame
+	{
+	  Run calc.exe
+	  WinActivate
+	}
+	Else IfWinNotActive ahk_class CalcFrame
+	{
+	  WinActivate
+	}
+	Else
+	{
+	  WinMinimize
+	}
+Return
 
 ;CapsLock & e:: Send, !#^+s
 ;CapsLock & d:: Send, !#^+d
-;CapsLock & s:: Send, !#^+f
+;CapsLock & f::    return
 ;CapsLock & f:: Run https://www.google.com/
 
 CapsLock & t:: Reload
@@ -63,6 +88,13 @@ CapsLock & t:: Reload
 ;LAlt & Tab::
 ;LAlt & LCtrl::ShiftAltTab
 
+
+~LCtrl up::
+	If (A_PriorKey = "LControl") {
+		Send {Esc}
+	}
+	return
+	
 LCtrl & Tab::AltTab  
 ;有问题的
 ;space as modifier key
@@ -104,8 +136,8 @@ Space & f::Right
 
 Space & w::PgUp
 Space & r::PgDn
-Space & x::Home
-Space & v::End
+Space & a::Home
+Space & g::End
 
 Space & z::ESC
 Space & Tab::BackSpace
